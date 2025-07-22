@@ -84,7 +84,7 @@ A comprehensive real-time notification system built with **Next.js (TypeScript)*
 
 3. **Access the application**
    - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
+   - Backend API: http://localhost:5001
    - PostgreSQL: localhost:5432
    - Redis: localhost:6379
 
@@ -125,21 +125,21 @@ A comprehensive real-time notification system built with **Next.js (TypeScript)*
 The system comes with seed data, but you can create new users via the API:
 
 ```bash
-curl -X POST http://localhost:5000/api/users \
+curl -X POST http://localhost:5001/api/users \
   -H "Content-Type: application/json" \
   -d '{"username": "alice", "email": "alice@example.com"}'
 ```
 
 ### 2. Follow Users
 ```bash
-curl -X POST http://localhost:5000/api/follows \
+curl -X POST http://localhost:5001/api/follows \
   -H "Content-Type: application/json" \
   -d '{"followerId": 1, "followingId": 2}'
 ```
 
 ### 3. Create Content
 ```bash
-curl -X POST http://localhost:5000/api/content \
+curl -X POST http://localhost:5001/api/content \
   -H "Content-Type: application/json" \
   -d '{"userId": 2, "type": "BLOG", "title": "My First Blog Post", "body": "This is amazing!"}'
 ```
@@ -149,6 +149,8 @@ curl -X POST http://localhost:5000/api/content \
 - Select a user from the dropdown
 - Follow other users and create content
 - Watch real-time notifications appear instantly!
+
+**Note**: Backend API runs on port 5001 to avoid conflicts with macOS AirPlay Receiver on port 5000.
 
 ## 🔧 API Endpoints
 

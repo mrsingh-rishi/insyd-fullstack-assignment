@@ -4,7 +4,7 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
-import Redis from 'redis';
+import { createClient } from 'redis';
 
 import userRoutes from './routes/users';
 import followRoutes from './routes/follows';
@@ -30,7 +30,7 @@ const io = new Server(server, {
 
 // Initialize database and Redis clients
 export const prisma = new PrismaClient();
-export const redisClient = Redis.createClient({
+export const redisClient = createClient({
   url: process.env.REDIS_URL || 'redis://localhost:6379'
 });
 
