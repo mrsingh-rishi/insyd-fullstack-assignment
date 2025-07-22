@@ -117,16 +117,20 @@ Your real-time notification system is fully implemented and production-ready. He
 
 ## 🛠️ **How to Start the Project**
 
-### Option 1: Docker Compose (Recommended)
+### Option 1: Docker Compose (Recommended) ✨
 ```bash
 # Start all services with Docker Compose
+# Database setup and seeding is now automatic!
 docker-compose up --build
 
-# Setup database (first time only)
-docker-compose exec backend npx prisma db push
-docker-compose exec backend npm run db:seed
+# That's it! Everything is set up automatically:
+# - PostgreSQL database with schema
+# - Seeded with sample users and data
+# - Backend API server running
+# - Frontend React app running
+# - Real-time WebSocket connections
 
-# Access the application
+# Access the application:
 # - Frontend: http://localhost:3000
 # - Backend: http://localhost:5001
 ```

@@ -18,8 +18,11 @@ services:
       - REDIS_URL=redis://redis:6379
       - FRONTEND_URL=http://frontend:3000
     depends_on:
-      - database
-      - redis
+      database:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: on-failure
 
   database:
     image: postgres
@@ -29,11 +32,23 @@ services:
       POSTGRES_DB: notifications
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d notifications"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   redis:
     image: redis
     ports:
       - '6379:6379'
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
 
   nginx:
     image: nginx

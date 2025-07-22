@@ -8,21 +8,25 @@ Your real-time notification system is now fully functional with Docker Compose s
 
 ## 🔧 **Quick Start Commands**
 
-### **Option 1: Docker Compose (Recommended)**
+### **Option 1: Docker Compose (Recommended) 🎆**
 
 ```bash
 # Clone and start the system
 git clone <repository-url>
 cd real-time-notification-system
 
-# Start all services (PostgreSQL, Redis, Backend, Frontend, Nginx)
+# Start everything with ONE command!
 docker-compose up --build
 
-# First time setup (in another terminal)
-docker-compose exec backend npx prisma db push
-docker-compose exec backend npm run db:seed
+# That's it! 🎉 The system automatically:
+# ✅ Starts PostgreSQL and Redis
+# ✅ Sets up database schema
+# ✅ Seeds with sample users (Alice, Bob, Charlie, Diana)
+# ✅ Launches backend API server
+# ✅ Starts frontend React app
+# ✅ Configures real-time WebSocket connections
 
-# Access your application
+# Access your application:
 # - Frontend: http://localhost:3000
 # - Backend API: http://localhost:5001  
 # - Health Check: http://localhost:5001/health

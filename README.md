@@ -69,7 +69,7 @@ A comprehensive real-time notification system built with **Next.js (TypeScript)*
 
 ## 🛠️ Quick Start
 
-### Option 1: Docker Compose (Recommended)
+### Option 1: Docker Compose (Recommended) ✨
 
 1. **Clone the repository**
    ```bash
@@ -77,10 +77,16 @@ A comprehensive real-time notification system built with **Next.js (TypeScript)*
    cd real-time-notification-system
    ```
 
-2. **Start all services**
+2. **Start everything with one command**
    ```bash
    docker-compose up --build
    ```
+   
+   **That's it!** The system will automatically:
+   - Start PostgreSQL and Redis
+   - Setup and seed the database
+   - Launch backend and frontend
+   - Configure all connections
 
 3. **Access the application**
    - Frontend: http://localhost:3000

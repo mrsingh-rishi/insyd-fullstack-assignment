@@ -8,11 +8,12 @@ This guide will walk you through testing all features of the real-time notificat
 
 1. **Start the system** using one of these methods:
    ```bash
-   # Option 1: Quick start script
-   ./start-dev.sh
-   
-   # Option 2: Docker Compose
+   # Option 1: Docker Compose (Recommended - Everything Automatic!)
    docker-compose up --build
+   # This automatically sets up database, seeds data, and starts all services!
+   
+   # Option 2: Quick start script
+   ./start-dev.sh
    
    # Option 3: Manual setup
    # Terminal 1: Start Redis
