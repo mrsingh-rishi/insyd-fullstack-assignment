@@ -5,6 +5,7 @@ services:
       - '3000:3000'
     environment:
       - NODE_ENV=development
+      - NEXT_PUBLIC_BACKEND_URL=http://localhost:5001
     depends_on:
       - backend
 
@@ -16,7 +17,7 @@ services:
       - NODE_ENV=development
       - DATABASE_URL=postgresql://user:password@database:5432/notifications
       - REDIS_URL=redis://redis:6379
-      - FRONTEND_URL=http://frontend:3000
+      - FRONTEND_URL=http://localhost:3000
     depends_on:
       database:
         condition: service_healthy
