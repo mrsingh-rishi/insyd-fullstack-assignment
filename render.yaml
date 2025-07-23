@@ -1,0 +1,47 @@
+services:
+  # Backend API Service
+  - type: web
+    name: notification-backend
+    runtime: node
+    buildCommand: cd backend && npm install && npx prisma generate && npm run build
+    startCommand: cd backend && npx prisma db push && npm run db:seed && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: notification-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: notification-redis
+          property: connectionString
+      - key: FRONTEND_URL
+        fromService:
+          type: web
+          name: notification-frontend
+          property: url
+
+  # Frontend Static Site
+  - type: web
+    name: notification-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/out
+    envVars:
+      - key: NEXT_PUBLIC_API_URL
+        fromService:
+          type: web
+          name: notification-backend
+          property: url
+
+databases:
+  - name: notification-db
+    databaseName: notifications
+    user: notification_user
+
+  - name: notification-redis
+    plan: free
