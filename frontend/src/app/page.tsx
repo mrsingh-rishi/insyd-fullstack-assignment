@@ -34,10 +34,12 @@ const MainApp: React.FC = () => {
           apiClient.getUsers(),
           apiClient.getContent(10)
         ]);
-        setUsers(usersData as User[]);
-        setContent(contentData as Content[]);
-        if (usersData.length > 0) {
-          setCurrentUser(usersData[0]);
+        const typedUsersData = usersData as User[];
+        const typedContentData = contentData as Content[];
+        setUsers(typedUsersData);
+        setContent(typedContentData);
+        if (typedUsersData.length > 0) {
+          setCurrentUser(typedUsersData[0]);
         }
       } catch (error) {
         console.error('Failed to fetch initial data:', error);
