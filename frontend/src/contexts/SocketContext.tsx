@@ -42,8 +42,10 @@ export const SocketProvider: React.FC<SocketProviderProps> = ({ children }) => {
 
   useEffect(() => {
     // Initialize socket connection
-    const newSocket = io(process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001');
-    
+    const socketUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+    console.log('Connecting to socket at:', socketUrl);
+    const newSocket = io(socketUrl);
+
     newSocket.on('connect', () => {
       console.log('Connected to server');
       setIsConnected(true);

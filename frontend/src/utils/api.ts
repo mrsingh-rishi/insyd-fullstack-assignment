@@ -4,6 +4,7 @@ export class ApiClient {
   private baseUrl: string;
 
   constructor(baseUrl = API_BASE_URL) {
+    console.log('API Base URL:', baseUrl);
     this.baseUrl = baseUrl;
   }
 
