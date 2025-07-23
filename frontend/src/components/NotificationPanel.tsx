@@ -21,7 +21,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
     setLoading(true);
     try {
       const notifications = await apiClient.getNotifications(userId, 20, false);
-      setStoredNotifications(notifications);
+      setStoredNotifications(notifications as Notification[]);
     } catch (error) {
       console.error('Failed to fetch notifications:', error);
     } finally {
@@ -32,7 +32,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
   const fetchCounts = useCallback(async () => {
     try {
       const counts = await apiClient.getNotificationCounts(userId);
-      setCounts(counts);
+      setCounts(counts as NotificationCounts);
     } catch (error) {
       console.error('Failed to fetch notification counts:', error);
     }
