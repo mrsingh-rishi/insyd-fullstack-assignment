@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+// const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001'; // uncomment for local development
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://52.207.219.247:5001'; // production URL
 
 export class ApiClient {
   private baseUrl: string;
