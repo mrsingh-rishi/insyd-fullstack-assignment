@@ -34,8 +34,8 @@ const MainApp: React.FC = () => {
           apiClient.getUsers(),
           apiClient.getContent(10)
         ]);
-        setUsers(usersData);
-        setContent(contentData);
+        setUsers(usersData as User[]);
+        setContent(contentData as Content[]);
         if (usersData.length > 0) {
           setCurrentUser(usersData[0]);
         }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useSocket } from '@/contexts/SocketContext';
 import { apiClient } from '@/utils/api';
 import { Notification, NotificationCounts } from '@/types';
@@ -17,7 +17,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
   const [counts, setCounts] = useState<NotificationCounts>({ total: 0, unread: 0 });
   const [loading, setLoading] = useState(false);
 
-  const fetchNotifications = async () => {
+  const fetchNotifications = useCallback(async () => {
     setLoading(true);
     try {
       const notifications = await apiClient.getNotifications(userId, 20, false);
@@ -27,23 +27,23 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
 
-  const fetchCounts = async () => {
+  const fetchCounts = useCallback(async () => {
     try {
       const counts = await apiClient.getNotificationCounts(userId);
       setCounts(counts);
     } catch (error) {
       console.error('Failed to fetch notification counts:', error);
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     if (isOpen) {
       fetchNotifications();
       fetchCounts();
     }
-  }, [isOpen, userId]);
+  }, [isOpen, userId, fetchNotifications, fetchCounts]);
 
 
   const markAllAsRead = async () => {
