@@ -17,13 +17,6 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
   const [counts, setCounts] = useState<NotificationCounts>({ total: 0, unread: 0 });
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchNotifications();
-      fetchCounts();
-    }
-  }, [isOpen, userId]);
-
   const fetchNotifications = async () => {
     setLoading(true);
     try {
@@ -44,6 +37,14 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
       console.error('Failed to fetch notification counts:', error);
     }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      fetchNotifications();
+      fetchCounts();
+    }
+  }, [isOpen, userId]);
+
 
   const markAllAsRead = async () => {
     try {
@@ -121,7 +122,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ userId, isOpen, o
                 <span className="text-2xl">🔔</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-700 mb-2">No notifications yet</h3>
-              <p className="text-gray-500">You'll see real-time notifications here when others post content!</p>
+              <p className="text-gray-500">You&apos;ll see real-time notifications here when others post content!</p>
             </div>
           ) : (
             <div className="space-y-4">
