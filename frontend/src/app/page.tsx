@@ -67,7 +67,7 @@ const MainApp: React.FC = () => {
         body: newContent.body || undefined
       });
       
-      setContent(prev => [createdContent, ...prev]);
+      setContent(prev => [createdContent as Content, ...prev]);
       setNewContent({ type: 'BLOG', title: '', body: '' });
     } catch (error) {
       console.error('Failed to create content:', error);
